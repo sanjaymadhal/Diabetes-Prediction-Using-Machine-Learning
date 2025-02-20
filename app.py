@@ -1,5 +1,7 @@
 import pickle
 import streamlit as st
+import pandas as pd
+from sklearn.metrics import accuracy_score
 
 #set the page configuration
 st.set_page_config(page_title="Diabetes Prediction", layout="wide", page_icon="🧑‍⚕")
@@ -8,8 +10,8 @@ st.set_page_config(page_title="Diabetes Prediction", layout="wide", page_icon="�
 diabetes_model_path = r'C:\Users\sanjay\OneDrive\Desktop\ROOT\Logistic Regression\diabetes_model.sav'
 diabetes_model = pickle.load(open(diabetes_model_path, 'rb'))
 
-#page title
-st.title("Diabetes Prediction Using ML")
+#header
+st.header("Diabetes Prediction Using Machine Learning")
 
 #getting the input data from the user
 col1,col2,col3 = st.columns(3)
@@ -37,11 +39,25 @@ with col3:
         if prediction[0] == 1:
             st.error("You have Diabetes")
         else:
-            st.success("You don't have Diabetes")                    
+            st.success("You don't have Diabetes")
 with col1:
-    accuracy = st.button("Check Accuracy")
-    if accuracy:
-        st.write("Accuracy of the model is 78.57%")                                        
+    if st.button('Check Accuracy'):
+        # Load the test data
+        test_data = pd.read_csv(r"C:\Users\sanjay\OneDrive\Desktop\ROOT\Logistic Regression\diabetes.csv")
+        
+        # Split the data into features (X) and target (y)
+        x_test = test_data.drop(columns=['Outcome'])
+        y_test = test_data['Outcome']
+        
+        # Make predictions
+        y_pred = diabetes_model.predict(x_test)
+        
+        # Calculate accuracy
+        accuracy = accuracy_score(y_test, y_pred)
+        
+        # Display the accuracy
+        st.write(f"Model Accuracy on Test Data: {accuracy * 100:.2f}%")
+                                  
 
 #footer
 st.markdown("Created by [Sanjay M D](https://www.linkedin.com/in/sanjay-m-d/)")
