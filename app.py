@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 st.set_page_config(page_title="Diabetes Prediction", layout="wide", page_icon="🧑‍⚕")
 
 #load the saved diabetes model
-diabetes_model_path = r"C:\Users\sanjay\OneDrive\Desktop\ROOT\Logistic Regression\diabetes_model.pkl"
+diabetes_model_path = r"diabetes_model.sav"
 diabetes_model = pickle.load(open(diabetes_model_path, 'rb'))
 
 #header
@@ -43,7 +43,7 @@ with col3:
 with col1:
     if st.button('Check Accuracy'):
         # Load the test data
-        test_data = pd.read_csv(r"C:\Users\sanjay\OneDrive\Desktop\ROOT\Logistic Regression\diabetes.csv")
+        test_data = pd.read_csv(r"diabetes.csv")
         
         # Split the data into features (X) and target (y)
         x_test = test_data.drop(columns=['Outcome'])
