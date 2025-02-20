@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 st.set_page_config(page_title="Diabetes Prediction", layout="wide", page_icon="🧑‍⚕")
 
 #load the saved diabetes model
-diabetes_model_path = r'C:\Users\sanjay\OneDrive\Desktop\ROOT\Logistic Regression\diabetes_model.sav'
+diabetes_model_path = r"C:\Users\sanjay\OneDrive\Desktop\ROOT\Logistic Regression\diabetes_model.pkl"
 diabetes_model = pickle.load(open(diabetes_model_path, 'rb'))
 
 #header
