@@ -38,3 +38,10 @@ with col3:
             st.error("You have Diabetes")
         else:
             st.success("You don't have Diabetes")                    
+with col1:
+    accuracy = st.button("Check Accuracy")
+    if accuracy:
+        st.write("Accuracy of the model is 78.57%")                                        
+
+#footer
+st.markdown("Created by [Sanjay M D](https://www.linkedin.com/in/sanjay-m-d/)")
